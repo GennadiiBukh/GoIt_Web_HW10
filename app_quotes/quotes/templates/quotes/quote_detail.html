@@ -1,0 +1,7 @@
+{% extends "quotes/base.html" %}
+
+{% block content %}
+  <h1>{{ quote.text }}</h1>
+  <p>Author: {{ quote.author.fullname }}</p>
+  <p>Tags: {% for tag in quote.tags.all %}{{ tag.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+{% endblock %}

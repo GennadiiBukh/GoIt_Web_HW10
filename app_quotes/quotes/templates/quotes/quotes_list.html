@@ -1,0 +1,22 @@
+{% extends "quotes/base.html" %}
+
+{% block content %}
+  <h1>Quotes List</h1>
+  <ul>
+  {% for quote in quotes %}
+    <li>
+      <a href="{% url 'quote_detail' quote.pk %}">{{ quote.text }}</a> ({{ quote.author.fullname }})
+    </li>
+  {% empty %}
+    <li>No quotes yet.</li>
+  {% endfor %}
+  </ul>
+
+  {% if quotes.has_previous %}
+    <a href="?page={{ quotes.previous_page_number }}">Previous</a>
+  {% endif %}
+
+  {% if quotes.has_next %}
+    <a href="?page={{ quotes.next_page_number }}">Next</a>
+  {% endif %}
+{% endblock %}
